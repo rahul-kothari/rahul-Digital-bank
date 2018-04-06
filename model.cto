@@ -1,0 +1,76 @@
+/*
+ * NOT SURE if the license comments are necessary.
+ * Hence, removing them all.
+ */
+
+/**
+ * A very simple digital bank. You have members (account holders) 
+ * and the transaction is transferring money to different accounts.
+ */
+namespace org.acme.digitalbank
+
+asset Account identified by accountId {
+  o String accountId
+  o Double balance
+  --> Customer owner
+}
+
+participant Customer identified by customerId {
+  o String customerId
+  o String firstName
+  o String lastName
+  o String emailAddress optional
+  // to check that account holder is atleast 18 years of age.
+  o DateOfBirth dob
+}
+
+concept DateOfBirth {
+  o Integer yearOfBirth
+  o Integer monthOfBirth
+  o Integer dayOfBirth
+// didn't do DateTime to simplify things in .js file
+}
+
+abstract transaction MoveMoney {
+  o Double amount
+}
+
+
+transaction AccountTransfer extends MoveMoney {
+  --> Account from
+  --> Account to
+}
+
+transaction Withdrawal extends MoveMoney {
+  --> Account from
+}
+
+// foreign exchange currency withdrawal
+transaction WithdrawdiffCurrency extends 
+		Withdrawal {
+  o Double currencyExchangeRate
+  /**
+   * how much is 1 unit of your currency in 
+   * terms of original currency.
+   * amount - is inputted in currency of choice
+   */
+}
+
+transaction Deposit extends MoveMoney {
+  --> Account to
+}
+/*
+POSSIBLE FUTURE IMPLEMENTATIONS: 
+transaction Loan extends Withdrawal {
+  o Double interestRate // Annually
+  o Integer monthsToRepayIn
+  // original contract of in how many months,
+  //loan must be paid by.
+}
+
+If you have enough money to clear your loan all at once
+transaction payLoanAtOnce extends Loan {}
+
+safe keeping of items (lockers)
+
+*/
