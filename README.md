@@ -74,6 +74,8 @@ Congratulations!
 ### NOTE :
 As you can see in comments of `logic.js` I am working on other functionalities! If you have any recommendations of transactions, that I should code, please let me know!
 
+You can also create a `Query.js` file to query data using CouchDB (https://hyperledger.github.io/composer/next/business-network/query.html).
+
 ## Want to deploy this on the network :
 Install docker 17.x
 Run it as an administrator
