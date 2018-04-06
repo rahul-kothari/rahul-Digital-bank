@@ -10,8 +10,7 @@ Used permissioned blockchain such as hyperledger fabric along with composer to c
 `Account`
 
 **Transaction**
-`AccountTransfer`
-`Deposit`,`Withdrawal`, `WithdrawdiffCurrency` - withdraw in different currency
+`AccountTransfer`- transfer money between two accounts, `Deposit`,`Withdrawal`, `WithdrawdiffCurrency` - withdraw in different currency
 
 Accounts are owned by a customer. One customer CAN have more than one account, AND they can do any transactions as they see fit.
 
@@ -20,7 +19,6 @@ All the transactions are implemented in `logic.js` file. The `accountTransfer()`
 To test this Business Network Definition on Composer, go to the **Test** tab:
 
 Create a `Customer` participant:
-
 ```
 {
   "$class": "org.acme.digitalbank.Customer",
@@ -34,24 +32,18 @@ Create a `Customer` participant:
     "dayOfBirth": 20
   }
 }
-
-
-Collapse
-
 ```
 
 Create an `Account` asset:
-
 ```
-
 {
   "$class": "org.acme.digitalbank.Account",
   "accountId": "rahul1",
   "balance": 1500,
-  "owner": "resource:org.acme.digitalbank.Customer#rahul" (can also do "owner" : "rahul"
+  "owner": "resource:org.acme.digitalbank.Customer#rahul"
 }
 ```
-(Owner is the customerId)
+(can also do `"owner" : "rahul"`. Owner is the customerId)
 
 Submit a `AccountTransfer` transaction:
 ```
@@ -81,3 +73,22 @@ Congratulations!
 
 ### NOTE :
 As you can see in comments of `logic.js` I am working on other functionalities! If you have any recommendations of transactions, that I should code, please let me know!
+
+## Want to deploy this on the network :
+Install docker 17.x
+Run it as an administrator
+go on your command line and type
+```
+$ docker run --name composer-playground --publish 8080:8080 hyperledger/composer-playground
+```
+Now go to `localhost:8080` and enjoy!
+## Want to use this as a Web App (UI)
+SURE! It just is QUITE A LOT of work:
+Quoting the Composer docs:-
+Composer DOCS: https://hyperledger.github.io/composer/next/installing/development-tools.html
+
+Install hyperledger fabric, composer-playround, yo
+https://hyperledger.github.io/composer/next/tutorials/developer-tutorial.html
+After deploying the .bna (business network archive file) and create a fabric instance of it, then
+
+CREATING THE WEB APP - Using the REST Server and yo!
