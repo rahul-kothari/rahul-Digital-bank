@@ -1,4 +1,4 @@
-# rahul-Digital-bank
+# Rahul-Digital-Bank
 Used permissioned blockchain such as hyperledger fabric along with composer to create my own digital bank
 
 >This is my first Hyperledger Composer work. I tried to use as much functionality as possible and leverage Fabric and Composer to create this. The Business network defines:
